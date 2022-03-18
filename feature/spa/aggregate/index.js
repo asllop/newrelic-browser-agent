@@ -505,11 +505,10 @@ baseEE.on('feat-spa', function () {
   })
 
   register(INTERACTION_API + 'setAttribute', function (t, name, value) {
-    fileUrl = obfuscateFile(value)
+    var fileUrl = obfuscateFile(value)
     if (fileUrl != null) {
       this.ixn.root.attrs.custom[name] = fileUrl
-    }
-    else {
+    } else {
       this.ixn.root.attrs.custom[name] = value
     }
   })

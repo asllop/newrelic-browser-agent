@@ -101,11 +101,10 @@ function addPageAction (t, name, attributes) {
 }
 
 function setCustomAttribute (t, key, value) {
-  fileUrl = obfuscateFile(value)
+  var fileUrl = obfuscateFile(value)
   if (fileUrl != null) {
     att[key] = fileUrl
-  }
-  else {
+  } else {
     att[key] = value
   }
 }
