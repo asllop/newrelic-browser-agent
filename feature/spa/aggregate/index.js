@@ -505,7 +505,7 @@ baseEE.on('feat-spa', function () {
   })
 
   register(INTERACTION_API + 'setAttribute', function (t, name, value) {
-    const fileUrl = obfuscateFile(value)
+    fileUrl = obfuscateFile(value)
     if (fileUrl != null) {
       this.ixn.root.attrs.custom[name] = fileUrl
     }

@@ -5,7 +5,7 @@
 
 module.exports = function obfuscateFile (url) {
     try {
-        const parsedUrl = new URL(url)
+        parsedUrl = new URL(url)
         if (parsedUrl.protocol == "file:") {
             return parsedUrl.origin + 'HIDDEN_PATH/' + parsedUrl.pathname.split('/').pop()
         }

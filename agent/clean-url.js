@@ -8,7 +8,7 @@ var withoutHash = /([^?#]*)().*/
 var obfuscateFile = require('./obfuscate-file')
 
 module.exports = function cleanURL (url, keepHash) {
-  const fileUrl = obfuscateFile(url)
+  fileUrl = obfuscateFile(url)
   if (fileUrl != null) {
     return fileUrl
   }
