@@ -5,6 +5,14 @@
 
 var withHash = /([^?#]*)[^#]*(#[^?]*|$).*/
 var withoutHash = /([^?#]*)().*/
+var obfuscateFile = require('./obfuscate-file')
+
 module.exports = function cleanURL (url, keepHash) {
-  return url.replace(keepHash ? withHash : withoutHash, '$1$2')
+  const fileUrl = obfuscateFile(url)
+  if (fileUrl != null) {
+    return fileUrl
+  }
+  else {
+    return url.replace(keepHash ? withHash : withoutHash, '$1$2')
+  }
 }

@@ -11,6 +11,7 @@ var register = require('../../../agent/register-handler')
 var harvest = require('../../../agent/harvest')
 var HarvestScheduler = require('../../../agent/harvest-scheduler')
 var cleanURL = require('../../../agent/clean-url')
+var obfuscateFile = require('../../../agent/obfuscate-file')
 var config = require('config')
 
 var eventsPerMinute = 240
@@ -100,5 +101,11 @@ function addPageAction (t, name, attributes) {
 }
 
 function setCustomAttribute (t, key, value) {
-  att[key] = value
+  const fileUrl = obfuscateFile(value)
+  if (fileUrl != null) {
+    att[key] = fileUrl
+  }
+  else {
+    att[key] = value
+  }
 }

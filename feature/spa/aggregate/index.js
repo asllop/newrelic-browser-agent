@@ -27,6 +27,7 @@ var paintMetrics = require('../../../agent/paint-metrics').metrics
 var Interaction = require('./Interaction')
 var config = require('config')
 var eventListenerOpts = require('event-listener-opts')
+var obfuscateFile = require('../../../agent/obfuscate-file')
 
 var INTERACTION_EVENTS = [
   'click',
@@ -504,7 +505,13 @@ baseEE.on('feat-spa', function () {
   })
 
   register(INTERACTION_API + 'setAttribute', function (t, name, value) {
-    this.ixn.root.attrs.custom[name] = value
+    const fileUrl = obfuscateFile(value)
+    if (fileUrl != null) {
+      this.ixn.root.attrs.custom[name] = fileUrl
+    }
+    else {
+      this.ixn.root.attrs.custom[name] = value
+    }
   })
 
   register(INTERACTION_API + 'end', function (timestamp) {
